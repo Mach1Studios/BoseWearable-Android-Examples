@@ -1,0 +1,2 @@
+rootProject.name = 'BoseWearable-Examples'
+include ':basic-example', ':data-example', ':heading-example', ':multi-example', ':scene-example'
