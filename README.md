@@ -1,6 +1,6 @@
 # Bose Wearable SDK for Android
 
-Please be sure your prototype hardware is running the latest firmware. [This document provides instructions on how to update the firmware.](https://developer.bose.com/guides/bose-ar/updating-bose-ar-device-firmware)
+Please be sure your Bose product is running the latest firmware. [This document provides instructions on how to update the firmware.](https://developer.bose.com/guides/bose-ar/updating-bose-ar-device-firmware)
 
 ## Installation
 

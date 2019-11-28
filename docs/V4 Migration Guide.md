@@ -4,18 +4,7 @@ This document explains how to migrate from v3 of the Bose Wearable SDK to v4.
 
 ## Breaking changes
 
-BoseWearable-Android now requires minimum Android SDK version (minSdkVersion) 22 (LOLLIPOP_MR1). v3 required at least API 21 (LOLLIPOP).
-
-BLEcore (com.bose.wearable:blecore) now requires a new dependency, Tasks API from Google Play services. Please update your application's dependencies and add the following dependency:
-```text
-implementation 'com.google.android.gms:play-services-tasks:16.0.1'
-```
-
-Bosewearable-UI (com.bose.wearable:bosewearableui) now requires new dependencies. Please update your application's dependencies and add the following dependencies:
-```text
-implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-implementation 'com.google.android.material:material:1.1.0-alpha06'
-```
+BoseWearable-Android now requires minimum Android SDK version (minSdkVersion) 26 (O). v3 required at least API 21 (LOLLIPOP).
 
 If your application implements `WearableDeviceListener`, the following changes are necessary:
 ```java
