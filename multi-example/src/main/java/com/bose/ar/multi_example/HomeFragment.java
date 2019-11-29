@@ -11,6 +11,7 @@ package com.bose.ar.multi_example;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -28,6 +30,7 @@ import com.bose.blecore.Logger;
 import com.bose.blecore.ScanError;
 import com.bose.bosewearableui.DeviceConnectorActivity;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class HomeFragment extends Fragment {
     public static final String ARG_ID = "id";
     private static final int REQUEST_CODE_CONNECTOR = 1;

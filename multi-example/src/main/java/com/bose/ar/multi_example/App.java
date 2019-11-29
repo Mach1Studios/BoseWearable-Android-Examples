@@ -9,6 +9,7 @@ package com.bose.ar.multi_example;
 //
 
 import android.app.Application;
+import android.os.Build;
 
 import com.bose.wearable.BoseWearable;
 import com.bose.wearable.Config;
@@ -17,6 +18,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BoseWearable.configure(this, new Config.Builder().build());
+        if (Build.VERSION.SDK_INT >= BoseWearable.MINIMUM_SUPPORTED_OS_VERSION) {
+            BoseWearable.configure(this, new Config.Builder().build());
+        }
     }
 }

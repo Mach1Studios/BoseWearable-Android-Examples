@@ -25,6 +25,5 @@
     <string name="sensors_suspended">Sensors suspended</string>
     <string name="sensors_resumed">Sensors resumed</string>
     <string name="no_device_selected">Can not continue without Bose AR, please select a device</string>
-    <string name="session_closed_error">Session closed with status code %d.</string>
     <string name="insufficient_api_level">API level %d or higher required</string>
 </resources>

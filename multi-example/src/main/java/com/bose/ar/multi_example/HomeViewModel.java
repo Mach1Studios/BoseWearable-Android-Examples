@@ -8,6 +8,7 @@ package com.bose.ar.multi_example;
 //  Copyright © 2019 Bose Corporation. All rights reserved.
 //
 
+import android.annotation.TargetApi;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ import com.bose.wearable.BoseWearable;
 
 import java.util.concurrent.TimeUnit;
 
+@TargetApi(BoseWearable.MINIMUM_SUPPORTED_OS_VERSION)
 public class HomeViewModel extends ViewModel {
     @NonNull
     private final Handler mHandler = new Handler();

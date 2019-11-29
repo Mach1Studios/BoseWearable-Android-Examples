@@ -8,6 +8,8 @@ package com.bose.ar.multi_example;
 //  Copyright © 2018 Bose Corporation. All rights reserved.
 //
 
+import android.annotation.TargetApi;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
@@ -36,6 +38,7 @@ import com.bose.wearable.wearabledevice.WearableDeviceListener;
 import java.util.Collections;
 import java.util.Set;
 
+@TargetApi(BoseWearable.MINIMUM_SUPPORTED_OS_VERSION)
 public class MainViewModel extends ViewModel {
     private static final SamplePeriod SAMPLE_PERIOD = SamplePeriod._20_MS;
 
