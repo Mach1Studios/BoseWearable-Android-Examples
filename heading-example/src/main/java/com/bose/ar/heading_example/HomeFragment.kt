@@ -59,7 +59,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun onSearchClicked() {
         val autoConnectTimeout = if (autoConnectSwitch.isChecked) AUTO_CONNECT_TIMEOUT else 0
-        val intent = DeviceConnectorActivity.newIntent(requireContext(), autoConnectTimeout,
+        val intent = DeviceConnectorActivity.newIntent(requireContext(), autoConnectTimeout, true,
                 MainViewModel.sensorIntent, MainViewModel.gestureIntent)
         startActivityForResult(intent, REQUEST_CODE_CONNECTOR)
     }

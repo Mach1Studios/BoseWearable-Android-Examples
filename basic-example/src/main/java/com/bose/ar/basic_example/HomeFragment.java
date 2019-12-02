@@ -164,7 +164,7 @@ public class HomeFragment extends Fragment {
     private void showDeviceConnector() {
         final int autoConnectTimeout = mAutoConnectSwitch.isChecked() ? AUTO_CONNECT_TIMEOUT : 0;
         final Intent intent = DeviceConnectorActivity.newIntent(requireContext(), autoConnectTimeout,
-            MainViewModel.sensorIntent(), MainViewModel.gestureIntent());
+            true, MainViewModel.sensorIntent(), MainViewModel.gestureIntent());
 
         startActivityForResult(intent, REQUEST_CODE_CONNECTOR);
     }

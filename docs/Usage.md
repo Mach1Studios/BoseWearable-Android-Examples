@@ -24,7 +24,7 @@ allprojects {
 2. Edit your application level `build.gradle` file and add Bose Gesture Library dependency:
 ```groovy
 dependencies {
-    def bose_ar_version = '4.0.15'
+    def bose_ar_version = '4.0.16'
     ...
     // BoseWearable library
     implementation "com.github.Bose.BoseWearable-Android:bosewearable:$bose_ar_version"

@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
     private void onSearchClicked() {
         final int autoConnectTimeout = mAutoConnectSwitch.isChecked() ? AUTO_CONNECT_TIMEOUT : 0;
         final Intent intent = DeviceConnectorActivity.newIntent(requireContext(), autoConnectTimeout,
-            SensorIntent.EMPTY, GestureIntent.EMPTY);
+            true, SensorIntent.EMPTY, GestureIntent.EMPTY);
 
         startActivityForResult(intent, REQUEST_CODE_CONNECTOR);
     }
