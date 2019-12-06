@@ -19,3 +19,6 @@ See the [Usage Guide](docs/Usage.md) for detailed information about how to use t
 See the [Logging Guide](docs/Logging.md) for information about the logging system used by the Bose Wearable SDK.
 
 The [Sensors and Coordinate System Guide](docs/Sensors%20and%20Coordinate%20System.md) contains information about the device's sensors and its coordinate system.
+
+NOTE: The MIT License governs the example app source code provided in this repository. By downloading and/or using the BoseWearable Android SDK, you agree to and acknowledge the terms of use set forth by the [Bose License Agreement](https://developer.bose.com/node/909).
+
