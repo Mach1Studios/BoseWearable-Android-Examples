@@ -81,74 +81,85 @@
         tools:text="0"/>
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/oscLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/accelerometer"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_marginTop="168dp"
+        android:text="@string/oscLabel"
         android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/yawEnable"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/oscAddressInput"
+            android:layout_width="172dp"
+            android:layout_height="33dp"
+            android:hint="@string/oscAddress"
+            android:singleLine="true"
+            android:text="@string/oscAddress_Default"
+            tools:text="@string/oscAddress_Default" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Switch
+        android:id="@+id/yawEnable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:checked="true"
+        android:text="Yaw Enabled"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"/>
+        tools:checked="true"
+        tools:layout_editor_absoluteY="242dp" />
 
-    <TextView
-        android:id="@+id/textView11"
+    <Switch
+        android:id="@+id/pitchEnable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="8dp"
-        android:text="@string/x"
-        android:textStyle="bold"
+        android:checked="true"
+        android:text="Pitch Enabled"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+        app:layout_constraintTop_toBottomOf="@+id/yawEnable"
+        tools:checked="true" />
 
-    <TextView
-        android:id="@+id/x"
+    <Switch
+        android:id="@+id/rollEnable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        tools:text="0"/>
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/y"
-        android:textStyle="bold"
+        android:checked="true"
+        android:text="Roll Enabled"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+        app:layout_constraintTop_toBottomOf="@+id/pitchEnable"
+        tools:checked="true" />
 
-    <TextView
-        android:id="@+id/y"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:text="0"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="485dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="182dp">
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/z"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"/>
-
-    <TextView
-        android:id="@+id/z"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        tools:text="0"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/oscPortInput"
+            android:layout_width="172dp"
+            android:layout_height="33dp"
+            android:hint="@string/oscPort"
+            android:singleLine="true"
+            android:text="@string/oscPort_Default"
+            tools:text="@string/oscPort_Default" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

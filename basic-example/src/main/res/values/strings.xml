@@ -26,4 +26,9 @@
     <string name="sensors_resumed">Sensors resumed</string>
     <string name="no_device_selected">Can not continue without Bose AR, please select a device</string>
     <string name="insufficient_api_level">API level %d or higher required</string>
+    <string name="oscLabel">OSC Settings</string>
+    <string name="oscAddress" >OSC Address</string>
+    <string name="oscPort">OSC Port</string>
+    <string name="oscAddress_Default">127.0.0.1</string>
+    <string name="oscPort_Default">9901</string>
 </resources>
