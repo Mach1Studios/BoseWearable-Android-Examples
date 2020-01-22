@@ -21,6 +21,8 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Switch;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,12 +59,15 @@ public class MainFragment extends Fragment {
     private TextView mPitch;
     private TextView mRoll;
     private TextView mYaw;
+    public float fYaw;
+    public float fPitch;
+    public float fRoll;
 
     public TextInputEditText mOscAddressInput;
     public TextInputEditText mOscPortInput;
-    public boolean mYawEnabled;
-    public boolean mPitchEnabled;
-    public boolean mRollEnabled;
+    public boolean mYawEnabled = true;
+    public boolean mPitchEnabled = false;
+    public boolean mRollEnabled = false;
 
     @Nullable
     private Snackbar mSnackBar;
@@ -70,9 +75,6 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Start the thread that sends messages
-        oscThread.start();
 
         final Bundle args = getArguments();
         if (args != null) {
@@ -83,10 +85,16 @@ public class MainFragment extends Fragment {
         if (mDeviceAddress == null && !mUseSimulatedDevice) {
             throw new IllegalArgumentException();
         }
+
+        // Start the thread that sends messages
+        oscThread.start();
     }
 
     // This is used to send messages
     private OSCPortOut oscPortOut;
+    // init IP and port
+    private String myIP = "127.0.0.1";
+    private int myPort = 9901;
 
     @Nullable
     @Override
@@ -102,36 +110,32 @@ public class MainFragment extends Fragment {
 
         mParentView = view.findViewById(R.id.container);
 
+        mOscAddressInput = view.findViewById(R.id.oscAddressInput);
+        mOscPortInput = view.findViewById(R.id.oscPortInput);
+        String myIP = mOscAddressInput.getText().toString();
+        int myPort = Integer.parseInt(mOscPortInput.getText().toString());
         mPitch = view.findViewById(R.id.pitch);
         mRoll = view.findViewById(R.id.roll);
         mYaw = view.findViewById(R.id.yaw);
-        mOscAddressInput = view.findViewById(R.id.oscAddressInput);
-        mOscPortInput = view.findViewById(R.id.oscPortInput);
-        mYawEnabled = view.findViewById(R.id.yawEnable);
-        mPitchEnabled = view.findViewById(R.id.pitchEnable);
-        mRollEnabled = view.findViewById(R.id.rollEnable);
-        String myIP = mOscAddressInput.getText().toString();
-        int myPort = Integer.parseInt(mOscPortInput.getText().toString());
 
-        mOscAddressInput.setOnFocusChangeListener(this);
-        mOscPortInput.setOnFocusChangeListener(this);
-
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-
-            // When focus is lost check that the text field has valid values.
-
-            if (!hasFocus) {
-                switch (view.getId()) {
-                    case R.id.oscAddressInput:
-                        // Validate EditText1
-                        break;
-                    case R.id.oscPortInput:
-                        // Validate EditText2
-                        break;
-                }
+        Switch yawEnable = (Switch) view.findViewById(R.id.yawEnable);
+        Switch pitchEnable = (Switch) view.findViewById(R.id.pitchEnable);
+        Switch rollEnable = (Switch) view.findViewById(R.id.rollEnable);
+        yawEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mYawEnabled = yawEnable.isChecked();
             }
-        }
+        });
+        pitchEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPitchEnabled = pitchEnable.isChecked();
+            }
+        });
+        rollEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mRollEnabled = rollEnable.isChecked();
+            }
+        });
     }
 
     @Override
@@ -231,11 +235,27 @@ public class MainFragment extends Fragment {
     private void onRotationData(@NonNull final SensorValue sensorValue) {
         final Quaternion quaternion = Quaternion.multiply(sensorValue.quaternion(), TRANSLATION_Q);
 
-        mPitch.setText(formatAngle(quaternion.xRotation()));
-        mRoll.setText(formatAngle(-quaternion.yRotation()));
-        mYaw.setText(formatAngle(-quaternion.zRotation()));
-
-
+        if (mYawEnabled) {
+            mYaw.setText(formatAngle(-quaternion.zRotation()));
+            fYaw = Float.parseFloat(formatDegrees(-quaternion.zRotation()));
+        } else {
+            mYaw.setText("0");
+            fYaw = 0.0f;
+        }
+        if (mPitchEnabled) {
+            mPitch.setText(formatAngle(quaternion.xRotation()));
+            fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation()));
+        } else {
+            mPitch.setText("0");
+            fPitch = 0.0f;
+        }
+        if (mRollEnabled) {
+            mRoll.setText(formatAngle(-quaternion.yRotation()));
+            fRoll = Float.parseFloat(formatDegrees(-quaternion.yRotation()));
+        } else {
+            mRoll.setText("0");
+            fRoll = 0.0f;
+        }
     }
 
     private void showError(final String message) {
@@ -251,6 +271,11 @@ public class MainFragment extends Fragment {
 
     private static String formatValue(final double value) {
         return String.format(Locale.US, "%.3f", value);
+    }
+
+    private static String formatDegrees(final double radians) {
+        final double degrees = radians * 180 / Math.PI;
+        return String.format(Locale.US, "%.4f", degrees);
     }
 
     private static String formatAngle(final double radians) {
@@ -288,9 +313,9 @@ public class MainFragment extends Fragment {
                 if (oscPortOut != null) {
                     // Creating the message
                     Object[] orientationOSC = new Object[3];
-                    orientationOSC[0] = mYaw;
-                    orientationOSC[1] = mPitch;
-                    orientationOSC[2] = mRoll;
+                    orientationOSC[0] = fYaw;
+                    orientationOSC[1] = fPitch;
+                    orientationOSC[2] = fRoll;
 
                     /* The version of JavaOSC from the Maven Repository is slightly different from the one
                      * from the download link on the main website at the time of writing this tutorial.
@@ -301,7 +326,7 @@ public class MainFragment extends Fragment {
                      * If you're using the downloadable version for some reason, you should switch the
                      * commented and uncommented lines for message below
                      */
-                    OSCMessage message = new OSCMessage(myIP, Arrays.asList(orientationOSC));
+                    OSCMessage message = new OSCMessage("/orientation", Arrays.asList(orientationOSC));
                     // OSCMessage message = new OSCMessage(myIP, orientationOSC);
 
                     try {

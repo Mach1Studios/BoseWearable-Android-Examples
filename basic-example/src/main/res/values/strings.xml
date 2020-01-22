@@ -31,4 +31,7 @@
     <string name="oscPort">OSC Port</string>
     <string name="oscAddress_Default">127.0.0.1</string>
     <string name="oscPort_Default">9901</string>
+    <string name="yEnableLabel">Yaw Enabled</string>
+    <string name="rEnabledLabel">Roll Enabled</string>
+    <string name="pEnabledLabel">Pitch Enabled</string>
 </resources>
