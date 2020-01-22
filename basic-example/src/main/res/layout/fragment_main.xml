@@ -84,48 +84,50 @@
         android:id="@+id/oscLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="11dp"
         android:text="@string/oscLabel"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/oscAddressInput"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+    <EditText
+        android:id="@+id/oscAddressInput"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/yawEnable"
-        app:layout_constraintEnd_toStartOf="@+id/textInputLayout2"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:hint="@string/oscAddress"
+        android:inputType="text"
+        android:singleLine="true"
+        android:text="@string/oscAddress_Default"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/oscLabel" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/oscAddressInput"
-            android:layout_width="172dp"
-            android:layout_height="33dp"
-            android:hint="@string/oscAddress"
-            android:singleLine="true"
-            android:text="@string/oscAddress_Default"
-            tools:text="@string/oscAddress_Default" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/oscPortInput"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/oscPort"
+        android:inputType="text"
+        android:singleLine="true"
+        android:text="@string/oscPort_Default"
+        app:layout_constraintStart_toEndOf="@+id/oscAddressInput"
+        app:layout_constraintTop_toTopOf="@+id/oscAddressInput" />
 
     <Switch
         android:id="@+id/yawEnable"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         android:checked="true"
         android:text="@string/yEnableLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/oscAddressInput" />
 
     <Switch
         android:id="@+id/pitchEnable"
@@ -148,27 +150,5 @@
         android:text="@string/rEnabledLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pitchEnable" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        android:layout_width="172dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="485dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/oscPortInput"
-            android:layout_width="172dp"
-            android:layout_height="33dp"
-            android:hint="@string/oscPort"
-            android:singleLine="true"
-            android:text="@string/oscPort_Default"
-            tools:text="@string/oscPort_Default" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

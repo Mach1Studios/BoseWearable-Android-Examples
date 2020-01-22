@@ -23,6 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Switch;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -63,8 +66,8 @@ public class MainFragment extends Fragment {
     public float fPitch;
     public float fRoll;
 
-    public TextInputEditText mOscAddressInput;
-    public TextInputEditText mOscPortInput;
+    public EditText mOscAddressInput;
+    public EditText mOscPortInput;
     public boolean mYawEnabled = true;
     public boolean mPitchEnabled = false;
     public boolean mRollEnabled = false;
@@ -136,6 +139,53 @@ public class MainFragment extends Fragment {
                 mRollEnabled = rollEnable.isChecked();
             }
         });
+
+        mOscAddressInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() != 0)
+                    addressChanged();
+            }
+        });
+
+        mOscPortInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() != 0)
+                    addressChanged();
+            }
+        });
+    }
+
+    public void addressChanged() {
+        // the variable OSCPortOut tries to get an instance of OSCPortOut
+        // at the address indicated by mOscAddressInput
+        try {
+            oscPortOut =
+                    new OSCPortOut(InetAddress.getByName(mOscAddressInput.getText().toString()), Integer.parseInt(mOscPortInput.getText().toString()));
+            // if the oscPort variable fails to be instantiated then sent
+            // the error message
+        } catch (Exception e) {
+            showError("Couldn't set new address");
+        }
     }
 
     @Override
@@ -238,22 +288,28 @@ public class MainFragment extends Fragment {
         if (mYawEnabled) {
             mYaw.setText(formatAngle(-quaternion.zRotation()));
             fYaw = Float.parseFloat(formatDegrees(-quaternion.zRotation()));
+            //Log.d("YFormDebug", "Yaw Formatted: " + formatDegrees(-quaternion.zRotation()));
+            //Log.d("YFinalDebug", "Yaw Final: " + Float.toString(fYaw));
         } else {
-            mYaw.setText("0");
+            mYaw.setText("0°");
             fYaw = 0.0f;
         }
         if (mPitchEnabled) {
             mPitch.setText(formatAngle(quaternion.xRotation()));
             fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation()));
+            //Log.d("PFormDebug", "Pitch Formatted: " + formatDegrees(quaternion.xRotation()));
+            //Log.d("PFinalDebug", "Pitch Final: " + Float.toString(fPitch));
         } else {
-            mPitch.setText("0");
+            mPitch.setText("0°");
             fPitch = 0.0f;
         }
         if (mRollEnabled) {
             mRoll.setText(formatAngle(-quaternion.yRotation()));
             fRoll = Float.parseFloat(formatDegrees(-quaternion.yRotation()));
+            //Log.d("RFormDebug", "Roll Formatted: " + formatDegrees(-quaternion.yRotation()));
+            //Log.d("RFinalDebug", "Roll Final: " + Float.toString(fRoll));
         } else {
-            mRoll.setText("0");
+            mRoll.setText("0°");
             fRoll = 0.0f;
         }
     }
@@ -275,7 +331,7 @@ public class MainFragment extends Fragment {
 
     private static String formatDegrees(final double radians) {
         final double degrees = radians * 180 / Math.PI;
-        return String.format(Locale.US, "%.4f", degrees);
+        return String.format(Locale.US,"%.3f", degrees);
     }
 
     private static String formatAngle(final double radians) {
@@ -288,23 +344,18 @@ public class MainFragment extends Fragment {
         @Override
         public void run() {
             /* The first part of the run() method initializes the OSCPortOut for sending messages.
-             *
-             * For more advanced apps, where you want to change the address during runtime, you will want
-             * to have this section in a different thread, but since we won't be changing addresses here,
-             * we only have to initialize the address once.
              */
 
-            try {
-                // Connect to some IP address and port
-                oscPortOut = new OSCPortOut(InetAddress.getByName(myIP), myPort);
-            } catch(UnknownHostException e) {
-                // Error handling when your IP isn't found
-                return;
-            } catch(Exception e) {
-                // Error handling for any other errors
-                return;
-            }
-
+//            try {
+//                // Connect to some IP address and port
+//                oscPortOut = new OSCPortOut(InetAddress.getByName(myIP), myPort);
+//            } catch(UnknownHostException e) {
+//                // Error handling when your IP isn't found
+//                return;
+//            } catch(Exception e) {
+//                // Error handling for any other errors
+//                return;
+//            }
 
             /* The second part of the run() method loops infinitely and sends messages every 10
              * milliseconds.
@@ -327,6 +378,7 @@ public class MainFragment extends Fragment {
                      * commented and uncommented lines for message below
                      */
                     OSCMessage message = new OSCMessage("/orientation", Arrays.asList(orientationOSC));
+                    Log.d("OSCMessage", "OSC Address: " + message.getAddress().toString() + " | OSC Contents: " + message.getArguments().toString());
                     // OSCMessage message = new OSCMessage(myIP, orientationOSC);
 
                     try {
@@ -334,7 +386,7 @@ public class MainFragment extends Fragment {
                         oscPortOut.send(message);
 
                         // Pause for half a second
-                        sleep(10);
+                        sleep(500);
                     } catch (Exception e) {
                         // Error handling for some error
                     }
