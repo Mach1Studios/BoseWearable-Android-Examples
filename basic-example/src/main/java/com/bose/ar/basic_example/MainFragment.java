@@ -386,7 +386,7 @@ public class MainFragment extends Fragment {
                         oscPortOut.send(message);
 
                         // Pause for half a second
-                        sleep(500);
+                        sleep(10);
                     } catch (Exception e) {
                         // Error handling for some error
                     }
