@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Basic Example</string>
+    <string name="app_name">M1-MNTRCTRL</string>
     <string name="attitude">Attitude</string>
     <string name="pitch">Pitch</string>
     <string name="roll">Roll</string>

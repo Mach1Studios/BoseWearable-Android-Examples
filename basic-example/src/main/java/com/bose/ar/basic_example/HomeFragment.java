@@ -85,10 +85,6 @@ public class HomeFragment extends Fragment {
         final Button simulatedDeviceButton = view.findViewById(R.id.simulatedDeviceButton);
         simulatedDeviceButton.setOnClickListener(v -> onSimulatedDeviceClicked());
 
-        final TextView versionText = view.findViewById(R.id.versionText);
-        versionText.setText(getString(R.string.version_name, BuildConfig.VERSION_NAME,
-            BuildConfig.VERSION_CODE));
-
         mProgressBar = requireActivity().findViewById(R.id.progressbar);
 
         mActionableViews.add(searchButton);
