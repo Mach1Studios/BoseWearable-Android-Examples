@@ -14,11 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="19dp"
         android:text="@string/attitude"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -28,7 +30,7 @@
         android:text="@string/pitch"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/pitch"
@@ -37,8 +39,8 @@
         android:layout_marginTop="8dp"
         android:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:text="0"/>
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/textView6"
@@ -48,7 +50,7 @@
         android:text="@string/roll"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/roll"
@@ -57,18 +59,18 @@
         android:layout_marginTop="8dp"
         android:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:text="0"/>
+        app:layout_constraintTop_toTopOf="@+id/textView6"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="19dp"
         android:text="@string/yaw"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/yaw"
@@ -91,12 +93,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintBottom_toTopOf="@+id/oscAddressInput"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/oscAddressInput"
         android:layout_width="172dp"
-        android:layout_height="33dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
         android:hint="@string/oscAddress"
@@ -108,8 +110,8 @@
 
     <EditText
         android:id="@+id/oscPortInput"
-        android:layout_width="172dp"
-        android:layout_height="33dp"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:hint="@string/oscPort"
         android:inputType="text"

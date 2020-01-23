@@ -65,6 +65,9 @@ public class MainFragment extends Fragment {
     public float fYaw;
     public float fPitch;
     public float fRoll;
+    private float fLastYaw;
+    private float fLastPitch;
+    private float fLastRoll;
 
     public EditText mOscAddressInput;
     public EditText mOscPortInput;
@@ -295,8 +298,8 @@ public class MainFragment extends Fragment {
             fYaw = 0.0f;
         }
         if (mPitchEnabled) {
-            mPitch.setText(formatAngle(quaternion.xRotation()));
-            fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation()));
+            mPitch.setText(formatAngle(quaternion.xRotation() % Math.PI/2));
+            fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation() % Math.PI/2));
             //Log.d("PFormDebug", "Pitch Formatted: " + formatDegrees(quaternion.xRotation()));
             //Log.d("PFinalDebug", "Pitch Final: " + Float.toString(fPitch));
         } else {
@@ -304,14 +307,17 @@ public class MainFragment extends Fragment {
             fPitch = 0.0f;
         }
         if (mRollEnabled) {
-            mRoll.setText(formatAngle(-quaternion.yRotation()));
-            fRoll = Float.parseFloat(formatDegrees(-quaternion.yRotation()));
+            mRoll.setText(formatAngle(quaternion.yRotation() % Math.PI/2));
+            fRoll = Float.parseFloat(formatDegrees(quaternion.yRotation() % Math.PI/2));
             //Log.d("RFormDebug", "Roll Formatted: " + formatDegrees(-quaternion.yRotation()));
             //Log.d("RFinalDebug", "Roll Final: " + Float.toString(fRoll));
         } else {
             mRoll.setText("0°");
             fRoll = 0.0f;
         }
+        fLastYaw = fYaw;
+        fLastPitch = fPitch;
+        fLastRoll = fRoll;
     }
 
     private void showError(final String message) {
@@ -361,7 +367,7 @@ public class MainFragment extends Fragment {
              * milliseconds.
              */
             while (true) {
-                if (oscPortOut != null) {
+                if ((oscPortOut != null) && (fLastYaw != fYaw || fLastPitch != fPitch || fLastRoll != fRoll)) {
                     // Creating the message
                     Object[] orientationOSC = new Object[3];
                     orientationOSC[0] = fYaw;
@@ -379,7 +385,7 @@ public class MainFragment extends Fragment {
                      */
                     OSCMessage message = new OSCMessage("/orientation", Arrays.asList(orientationOSC));
                     Log.d("OSCMessage", "OSC Address: " + message.getAddress().toString() + " | OSC Contents: " + message.getArguments().toString());
-                    // OSCMessage message = new OSCMessage(myIP, orientationOSC);
+                    //OSCMessage message = new OSCMessage("/orientation", orientationOSC);
 
                     try {
                         // Send the messages
