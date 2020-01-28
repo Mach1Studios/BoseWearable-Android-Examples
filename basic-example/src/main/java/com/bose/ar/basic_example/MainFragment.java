@@ -369,10 +369,10 @@ public class MainFragment extends Fragment {
             while (true) {
                 if ((oscPortOut != null) && (fLastYaw != fYaw || fLastPitch != fPitch || fLastRoll != fRoll)) {
                     // Creating the message
-                    Object[] orientationOSC = new Object[3];
-                    orientationOSC[0] = fYaw;
-                    orientationOSC[1] = fPitch;
-                    orientationOSC[2] = fRoll;
+                    List<Object> orientationOSC = new ArrayList<Object>();
+                    orientationOSC.add(fYaw);
+                    orientationOSC.add(fPitch);
+                    orientationOSC.add(fRoll);
 
                     /* The version of JavaOSC from the Maven Repository is slightly different from the one
                      * from the download link on the main website at the time of writing this tutorial.
@@ -383,9 +383,8 @@ public class MainFragment extends Fragment {
                      * If you're using the downloadable version for some reason, you should switch the
                      * commented and uncommented lines for message below
                      */
-                    OSCMessage message = new OSCMessage("/orientation", Arrays.asList(orientationOSC));
+                    OSCMessage message = new OSCMessage("/orientation", orientationOSC);
                     Log.d("OSCMessage", "OSC Address: " + message.getAddress().toString() + " | OSC Contents: " + message.getArguments().toString());
-                    //OSCMessage message = new OSCMessage("/orientation", orientationOSC);
 
                     try {
                         // Send the messages
