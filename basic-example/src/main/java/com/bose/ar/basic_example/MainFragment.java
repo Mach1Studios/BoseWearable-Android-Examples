@@ -298,8 +298,8 @@ public class MainFragment extends Fragment {
             fYaw = 0.0f;
         }
         if (mPitchEnabled) {
-            mPitch.setText(formatAngle(quaternion.xRotation() % Math.PI/2));
-            fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation() % Math.PI/2));
+            mPitch.setText(formatAngle(quaternion.xRotation()));
+            fPitch = Float.parseFloat(formatDegrees(quaternion.xRotation()));
             //Log.d("PFormDebug", "Pitch Formatted: " + formatDegrees(quaternion.xRotation()));
             //Log.d("PFinalDebug", "Pitch Final: " + Float.toString(fPitch));
         } else {
@@ -307,8 +307,8 @@ public class MainFragment extends Fragment {
             fPitch = 0.0f;
         }
         if (mRollEnabled) {
-            mRoll.setText(formatAngle(quaternion.yRotation() % Math.PI/2));
-            fRoll = Float.parseFloat(formatDegrees(quaternion.yRotation() % Math.PI/2));
+            mRoll.setText(formatAngle(quaternion.yRotation()));
+            fRoll = Float.parseFloat(formatDegrees(quaternion.yRotation()));
             //Log.d("RFormDebug", "Roll Formatted: " + formatDegrees(-quaternion.yRotation()));
             //Log.d("RFinalDebug", "Roll Final: " + Float.toString(fRoll));
         } else {
@@ -331,6 +331,10 @@ public class MainFragment extends Fragment {
         }
     }
 
+    private static float mapValue(float input, float in_min, float in_max, float out_min, float out_max){
+        return (input - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
     private static String formatValue(final double value) {
         return String.format(Locale.US, "%.3f", value);
     }
@@ -342,6 +346,10 @@ public class MainFragment extends Fragment {
 
     private static String formatAngle(final double radians) {
         final double degrees = radians * 180 / Math.PI;
+        return String.format(Locale.US, "%.2f°", degrees);
+    }
+
+    private static String formatAngleText(final double degrees) {
         return String.format(Locale.US, "%.2f°", degrees);
     }
 
@@ -384,7 +392,7 @@ public class MainFragment extends Fragment {
                      * commented and uncommented lines for message below
                      */
                     OSCMessage message = new OSCMessage("/orientation", orientationOSC);
-                    Log.d("OSCMessage", "OSC Address: " + message.getAddress().toString() + " | OSC Contents: " + message.getArguments().toString());
+                    //Log.d("OSCMessage", "OSC Address: " + message.getAddress().toString() + " | OSC Contents: " + message.getArguments().toString());
 
                     try {
                         // Send the messages

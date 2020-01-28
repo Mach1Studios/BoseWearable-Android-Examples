@@ -29,9 +29,9 @@
     <string name="oscLabel">OSC Settings</string>
     <string name="oscAddress" >OSC Address</string>
     <string name="oscPort">OSC Port</string>
-    <string name="oscPort_Default">9901</string>
+    <string name="oscPort_Default">9898</string>
     <string name="yEnableLabel">Yaw Enabled</string>
     <string name="rEnabledLabel">Roll Enabled</string>
     <string name="pEnabledLabel">Pitch Enabled</string>
-    <string name="oscAddress_Default">IP Address</string>
+    <string name="oscAddress_Default">127.0.0.1</string>
 </resources>
