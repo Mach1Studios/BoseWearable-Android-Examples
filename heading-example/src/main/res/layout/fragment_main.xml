@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".MainActivity">
+    tools:context="com.mach1.ar.heading_example.MainActivity">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/trueNorthSwitch"

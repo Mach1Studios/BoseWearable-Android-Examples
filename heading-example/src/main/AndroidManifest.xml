@@ -5,14 +5,14 @@
     tools:ignore="GoogleAppIndexingWarning">
 
     <application
-        android:name=".App"
+        android:name="com.mach1.ar.heading_example.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bose.ar.heading_example.MainActivity">
+        <activity android:name="com.bose.ar.heading_example.com.mach1.ar.heading_example.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

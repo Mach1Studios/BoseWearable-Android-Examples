@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context="com.bose.ar.scene_example.MainActivity"/>
+        tools:context="com.mach1.ar.scene_example.MainActivity"/>
 
     <TextView
         android:id="@+id/valuesText"

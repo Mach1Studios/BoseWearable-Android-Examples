@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.bose.ar.scene_example.MainFragment"
+        android:name="com.mach1.ar.scene_example.MainFragment"
         android:label="@string/main_fragment_title"
         tools:layout="@layout/fragment_main">
         <action
@@ -17,6 +17,6 @@
     </fragment>
     <fragment
         android:id="@+id/mainSettingsFragment"
-        android:name="com.bose.ar.scene_example.MainSettingsFragment"
+        android:name="com.mach1.ar.scene_example.MainSettingsFragment"
         android:label="@string/settings_fragment_title"/>
 </navigation>

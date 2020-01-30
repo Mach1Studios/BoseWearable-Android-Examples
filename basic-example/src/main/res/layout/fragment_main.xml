@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".MainActivity">
+    tools:context="com.mach1.ar.basic_example.MainActivity">
 
     <TextView
         android:id="@+id/textView4"
@@ -152,5 +152,23 @@
         android:text="@string/rEnabledLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pitchEnable" />
+
+    <TextView
+        android:id="@+id/m1weblink"
+        android:layout_width="177dp"
+        android:layout_height="16dp"
+        android:autoLink="web"
+        android:text="http://www.mach1.tech"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="52dp"
+        android:layout_height="63dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/m1logo_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

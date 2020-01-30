@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/deviceFragment"
-        android:name="com.bose.wearable.sample.DeviceFragment"
+        android:name="com.mach1.wearable.sample.DeviceFragment"
         android:label="@string/device_fragment_title">
         <action
             android:id="@+id/action_deviceFragment_to_deviceInfoFragment"
@@ -36,17 +36,17 @@
     </fragment>
     <fragment
         android:id="@+id/deviceInfoFragment"
-        android:name="com.bose.wearable.sample.DeviceInfoFragment"
+        android:name="com.mach1.wearable.sample.DeviceInfoFragment"
         android:label="@string/device_info_title">
     </fragment>
     <fragment
         android:id="@+id/devicePropertiesFragment"
-        android:name="com.bose.wearable.sample.DevicePropertiesFragment"
+        android:name="com.mach1.wearable.sample.DevicePropertiesFragment"
         android:label="@string/device_properties_title">
     </fragment>
     <fragment
         android:id="@+id/wearableDeviceInfoFragment"
-        android:name="com.bose.wearable.sample.WearableDeviceInfoFragment"
+        android:name="com.mach1.wearable.sample.WearableDeviceInfoFragment"
         android:label="@string/wearable_device_info">
         <action
             android:id="@+id/action_ARDeviceInfoFragment_to_availableSensorsFragment"
@@ -57,15 +57,15 @@
     </fragment>
     <fragment
         android:id="@+id/availableSensorsFragment"
-        android:name="com.bose.wearable.sample.AvailableSensorsFragment"
+        android:name="com.mach1.wearable.sample.AvailableSensorsFragment"
         android:label="@string/ar_device_info_available_sensors"/>
     <fragment
         android:id="@+id/availableGesturesFragment"
-        android:name="com.bose.wearable.sample.AvailableGesturesFragment"
+        android:name="com.mach1.wearable.sample.AvailableGesturesFragment"
         android:label="@string/ar_device_info_available_gestures"/>
     <fragment
         android:id="@+id/sensorInfoListFragment"
-        android:name="com.bose.wearable.sample.SensorInfoListFragment"
+        android:name="com.mach1.wearable.sample.SensorInfoListFragment"
         android:label="@string/wearable_sensor_info">
         <action
             android:id="@+id/action_sensorListFragment_to_sensorInfoFragment"
@@ -73,28 +73,28 @@
     </fragment>
     <fragment
         android:id="@+id/sensorInfoFragment"
-        android:name="com.bose.wearable.sample.SensorInfoFragment">
+        android:name="com.mach1.wearable.sample.SensorInfoFragment">
         <argument
             android:name="sensor-info"/>
     </fragment>
     <fragment
         android:id="@+id/sensorDataFragment"
-        android:name="com.bose.wearable.sample.SensorDataFragment"
+        android:name="com.mach1.wearable.sample.SensorDataFragment"
         android:label="@string/sensor_data"
         tools:layout="@layout/sensor_data_fragment">
     </fragment>
     <fragment
         android:id="@+id/sensorConfigFragment"
-        android:name="com.bose.wearable.sample.SensorConfigFragment"
+        android:name="com.mach1.wearable.sample.SensorConfigFragment"
         android:label="@string/sensor_config_title">
     </fragment>
     <fragment
         android:id="@+id/gestureConfigFragment"
-        android:name="com.bose.wearable.sample.GestureConfigFragment"
+        android:name="com.mach1.wearable.sample.GestureConfigFragment"
         android:label="@string/gesture_config_fragment_title"/>
     <fragment
         android:id="@+id/gestureDataFragment"
-        android:name="com.bose.wearable.sample.GestureDataFragment"
+        android:name="com.mach1.wearable.sample.GestureDataFragment"
         android:label="@string/gesture_data_fragment_title"
         tools:layout="@layout/fragment_gesture_data"/>
 </navigation>
